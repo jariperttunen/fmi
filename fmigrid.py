@@ -35,7 +35,7 @@ def sample_query():
     Sample query to collect 7 days from Jyväskylä airport
     """
     endutc = endtime()
-    startutc = starttime(endutc,10)
+    startutc = starttime(endutc,7)
     endiso = toisoformat(endutc)
     startiso = toisoformat(startutc)
     #Grid data query
