@@ -21,7 +21,7 @@ def griddata(start_time:str,end_time:str):
     """
     Grid data query
     Seems to return a few days only
-    Bounding box 'bbox' as in fmimultipoint
+    Bounding box 'bbox' as in fmimultipoint close to Jyvöskylä airport
     """
     model_data = download_stored_query("fmi::forecast::harmonie::surface::grid",
                                    args=["starttime="+start_time,
