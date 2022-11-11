@@ -2,9 +2,15 @@ import datetime as dt
 from fmiopendata.wfs import download_stored_query
 
 def endtime():
+    """
+    End time as UTC
+    """
     return  dt.datetime.utcnow()
 
 def starttime(endtime,days:int):
+    """
+    Create start time as 'days' before 'endtime'
+    """
     return endtime - dt.timedelta(days=days)
 
 def toisoformat(date:dt):
@@ -23,3 +29,18 @@ def griddata(start_time:str,end_time:str):
                                          "bbox=25,62,26,62"])
     #Return the model data
     return model_data
+
+def sample_query():
+    """
+    Sample query to collect 7 days from Jyväskylä airport
+    """
+    endutc = endtime()
+    startutc = starttime(endutc,10)
+    endiso = toisoformat(endutc)
+    startiso = toisoformat(startutc)
+    #Grid data query
+    model_data = griddata(startiso,endiso)
+    latest_date = max(model_data.data.keys())
+    first_date = min(model_data.data.keys())
+    print("First date:",first_date,"Latest date:",latest_date)
+    return model_data  
